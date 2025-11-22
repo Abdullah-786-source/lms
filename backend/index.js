@@ -1,37 +1,19 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
 const sequelize = require('./config/db');
 
 const userRoutes = require('./routes/userRoutes');
+const courseRoutes = require('./routes/courseRoutes'); // add this line
 
 const app = express();
 app.use(cors());
 app.use(express.json());
-
-app.post('/test', (req, res) => {
-  const { username, email, password, role } = req.body;
-
-  if (!username || !email || !password || !role) {
-    return res.status(400).json({ message: 'Required fields are missing' });
-  }
-
-  // Just simulate user creation without database
-  const user = {
-    id: Date.now(), // fake ID
-    username,
-    email,
-    role
-  };
-
-  console.log('User data:', user);
-
-  res.status(201).json({ message: 'User received', user });
-});
 app.use(express.urlencoded({ extended: true }));
 
+// Routes
 app.use('/api/users', userRoutes);
+app.use('/api/courses', courseRoutes); // add this line
 
 const PORT = process.env.PORT || 5000;
 
