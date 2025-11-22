@@ -1,5 +1,5 @@
-const Course = require("../model/course");
-const User = require("../model/user");
+const Course = require("../models/course");
+const User = require("../models/user");
 
 // Create a new course
 exports.createCourse = async (req, res) => {
@@ -34,8 +34,8 @@ exports.getCourses = async (req, res) => {
 // Get a single course by ID
 exports.getCourseById = async (req, res) => {
   try {
-    const { id } = req.params;
-    const course = await Course.findByPk(id, {
+    const { courseId } = req.params;
+    const course = await Course.findByPk(courseId, {
       include: { model: User, as: "instructor", attributes: ["user_id", "username", "email"] },
     });
 
@@ -53,10 +53,10 @@ exports.getCourseById = async (req, res) => {
 // Update a course
 exports.updateCourse = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { courseId} = req.params;
     const { title, description, instructor_id } = req.body;
 
-    const course = await Course.findByPk(id);
+    const course = await Course.findByPk(courseId);
     if (!course) {
       return res.status(404).json({ message: "Course not found" });
     }
@@ -72,9 +72,9 @@ exports.updateCourse = async (req, res) => {
 // Delete a course
 exports.deleteCourse = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { courseId } = req.params;
 
-    const course = await Course.findByPk(id);
+    const course = await Course.findByPk(courseId);
     if (!course) {
       return res.status(404).json({ message: "Course not found" });
     }
