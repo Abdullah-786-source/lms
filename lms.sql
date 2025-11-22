@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Nov 20, 2025 at 11:56 AM
+-- Generation Time: Nov 22, 2025 at 11:49 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -135,6 +135,45 @@ CREATE TABLE `course_engagement` (
 INSERT INTO `course_engagement` (`engagement_id`, `course_id`, `student_id`, `last_accessed`, `total_logins`, `total_time_spent_minutes`) VALUES
 (1, 1, 2, '2025-11-20 06:30:00', 3, 120),
 (2, 2, 2, '2025-11-20 06:35:00', 2, 90);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `course_videos`
+--
+
+CREATE TABLE `course_videos` (
+  `video_id` int(11) NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `module_id` int(11) DEFAULT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text DEFAULT NULL,
+  `file_path` varchar(255) NOT NULL,
+  `thumbnail_path` varchar(255) DEFAULT NULL,
+  `duration_seconds` int(11) DEFAULT 0,
+  `is_preview` tinyint(1) DEFAULT 0,
+  `access_level` enum('free','enrolled') DEFAULT 'enrolled',
+  `uploaded_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `course_videos`
+--
+
+INSERT INTO `course_videos` (`video_id`, `course_id`, `module_id`, `title`, `description`, `file_path`, `thumbnail_path`, `duration_seconds`, `is_preview`, `access_level`, `uploaded_at`, `updated_at`) VALUES
+(1, 1, 1, 'Introduction to Python', 'Basics of Python programming', '/content/JavaScript.mp4', '/thumbnails/python_intro.jpg', 600, 1, 'free', '2025-11-22 05:15:24', '2025-11-22 09:59:23'),
+(2, 1, 2, 'Python Functions', 'Understanding functions in Python', '/videos/python_functions.mp4', '/thumbnails/python_functions.jpg', 900, 0, 'enrolled', '2025-11-22 05:15:24', '2025-11-22 05:15:24'),
+(3, 2, NULL, 'Web Development Overview', 'Intro to HTML, CSS, JS', '/videos/web_overview.mp4', '/thumbnails/web_overview.jpg', 1200, 1, 'free', '2025-11-22 05:15:24', '2025-11-22 05:15:24'),
+(4, 1, 1, 'Introduction to Python', 'Basics of Python programming', '/videos/python_intro.mp4', '/thumbnails/python_intro.jpg', 600, 1, 'free', '2025-11-22 05:16:35', '2025-11-22 05:16:35'),
+(5, 1, 2, 'Python Functions', 'Understanding functions in Python', '/videos/python_functions.mp4', '/thumbnails/python_functions.jpg', 900, 0, 'enrolled', '2025-11-22 05:16:35', '2025-11-22 05:16:35'),
+(6, 2, 2, 'Web Development Overview', 'Intro to HTML, CSS, JS', '/videos/web_overview.mp4', '/thumbnails/web_overview.jpg', 1200, 1, 'free', '2025-11-22 05:16:35', '2025-11-22 05:16:35'),
+(7, 1, 1, 'Introduction to Python', 'Basics of Python programming', '/videos/python_intro.mp4', '/thumbnails/python_intro.jpg', 600, 1, 'free', '2025-11-22 05:18:11', '2025-11-22 05:18:11'),
+(8, 1, 2, 'Python Functions', 'Understanding functions in Python', '/videos/python_functions.mp4', '/thumbnails/python_functions.jpg', 900, 0, 'enrolled', '2025-11-22 05:18:11', '2025-11-22 05:18:11'),
+(9, 2, 2, 'Web Development Overview', 'Intro to HTML, CSS, JS', '/videos/web_overview.mp4', '/thumbnails/web_overview.jpg', 1200, 1, 'free', '2025-11-22 05:18:11', '2025-11-22 05:18:11'),
+(10, 1, 1, 'Introduction to Python', 'Basics of Python programming', '/videos/python_intro.mp4', '/thumbnails/python_intro.jpg', 600, 1, 'free', '2025-11-22 05:18:32', '2025-11-22 05:18:32'),
+(11, 1, 2, 'Python Functions', 'Understanding functions in Python', '/videos/python_functions.mp4', '/thumbnails/python_functions.jpg', 900, 0, 'enrolled', '2025-11-22 05:18:32', '2025-11-22 05:18:32'),
+(12, 2, 2, 'Web Development Overview', 'Intro to HTML, CSS, JS', '/videos/web_overview.mp4', '/thumbnails/web_overview.jpg', 1200, 1, 'free', '2025-11-22 05:18:32', '2025-11-22 05:18:32');
 
 -- --------------------------------------------------------
 
@@ -365,7 +404,75 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `username`, `email`, `password_hash`, `role`, `first_name`, `last_name`, `created_at`, `updated_at`) VALUES
 (1, 'admin1', 'admin1@example.com', 'hash_admin1', 'admin', 'Alice', 'Admin', '2025-11-20 07:57:00', '2025-11-20 07:57:00'),
 (2, 'student1', 'student1@example.com', 'hash_student1', 'student', 'Bob', 'Student', '2025-11-20 07:57:00', '2025-11-20 07:57:00'),
-(3, 'instructor1', 'instructor1@example.com', 'hash_instructor1', 'instructor', 'Carol', 'Instructor', '2025-11-20 07:57:00', '2025-11-20 07:57:00');
+(3, 'instructor1', 'instructor1@example.com', 'hash_instructor1', 'instructor', 'Carol', 'Instructor', '2025-11-20 07:57:00', '2025-11-20 07:57:00'),
+(6, 'ali', 'ali@exampe.com', '$2b$10$Gi3HzevUxb0Wt26mhdqeFuBE6L.JWFxtTQlfCpXh8MwKCqxbkyydy', 'admin', 'Ali', 'Abdullah', '2025-11-21 06:20:18', '2025-11-21 06:20:18');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `video_comments`
+--
+
+CREATE TABLE `video_comments` (
+  `comment_id` int(11) NOT NULL,
+  `video_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `comment` text NOT NULL,
+  `parent_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `video_transcodes`
+--
+
+CREATE TABLE `video_transcodes` (
+  `transcode_id` int(11) NOT NULL,
+  `video_id` int(11) NOT NULL,
+  `quality` enum('360p','480p','720p','1080p','4k') NOT NULL,
+  `file_path` varchar(255) NOT NULL,
+  `file_size_mb` decimal(10,2) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `video_transcodes`
+--
+
+INSERT INTO `video_transcodes` (`transcode_id`, `video_id`, `quality`, `file_path`, `file_size_mb`, `created_at`) VALUES
+(1, 1, '360p', '/videos/transcodes/python_intro_360p.mp4', '20.50', '2025-11-22 05:15:24'),
+(2, 1, '720p', '/videos/transcodes/python_intro_720p.mp4', '50.20', '2025-11-22 05:15:24'),
+(3, 2, '480p', '/videos/transcodes/python_functions_480p.mp4', '35.00', '2025-11-22 05:15:24'),
+(4, 3, '1080p', '/videos/transcodes/web_overview_1080p.mp4', '120.70', '2025-11-22 05:15:24'),
+(5, 1, '360p', '/videos/transcodes/python_intro_360p.mp4', '20.50', '2025-11-22 05:16:35'),
+(6, 1, '720p', '/videos/transcodes/python_intro_720p.mp4', '50.20', '2025-11-22 05:16:35'),
+(7, 2, '480p', '/videos/transcodes/python_functions_480p.mp4', '35.00', '2025-11-22 05:16:35'),
+(8, 3, '1080p', '/videos/transcodes/web_overview_1080p.mp4', '120.70', '2025-11-22 05:16:35'),
+(9, 1, '360p', '/videos/transcodes/python_intro_360p.mp4', '20.50', '2025-11-22 05:18:11'),
+(10, 1, '720p', '/videos/transcodes/python_intro_720p.mp4', '50.20', '2025-11-22 05:18:11'),
+(11, 2, '480p', '/videos/transcodes/python_functions_480p.mp4', '35.00', '2025-11-22 05:18:11'),
+(12, 3, '1080p', '/videos/transcodes/web_overview_1080p.mp4', '120.70', '2025-11-22 05:18:11'),
+(13, 1, '360p', '/videos/transcodes/python_intro_360p.mp4', '20.50', '2025-11-22 05:18:32'),
+(14, 1, '720p', '/videos/transcodes/python_intro_720p.mp4', '50.20', '2025-11-22 05:18:32'),
+(15, 2, '480p', '/videos/transcodes/python_functions_480p.mp4', '35.00', '2025-11-22 05:18:32'),
+(16, 3, '1080p', '/videos/transcodes/web_overview_1080p.mp4', '120.70', '2025-11-22 05:18:32');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `video_views`
+--
+
+CREATE TABLE `video_views` (
+  `view_id` int(11) NOT NULL,
+  `video_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `watched_seconds` int(11) DEFAULT 0,
+  `last_watched` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
@@ -408,6 +515,14 @@ ALTER TABLE `course_engagement`
   ADD PRIMARY KEY (`engagement_id`),
   ADD UNIQUE KEY `course_id` (`course_id`,`student_id`),
   ADD KEY `student_id` (`student_id`);
+
+--
+-- Indexes for table `course_videos`
+--
+ALTER TABLE `course_videos`
+  ADD PRIMARY KEY (`video_id`),
+  ADD KEY `course_id` (`course_id`),
+  ADD KEY `module_id` (`module_id`);
 
 --
 -- Indexes for table `discussions`
@@ -498,6 +613,30 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `email_7` (`email`);
 
 --
+-- Indexes for table `video_comments`
+--
+ALTER TABLE `video_comments`
+  ADD PRIMARY KEY (`comment_id`),
+  ADD KEY `video_id` (`video_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `parent_id` (`parent_id`);
+
+--
+-- Indexes for table `video_transcodes`
+--
+ALTER TABLE `video_transcodes`
+  ADD PRIMARY KEY (`transcode_id`),
+  ADD KEY `video_id` (`video_id`);
+
+--
+-- Indexes for table `video_views`
+--
+ALTER TABLE `video_views`
+  ADD PRIMARY KEY (`view_id`),
+  ADD UNIQUE KEY `video_id` (`video_id`,`student_id`),
+  ADD KEY `student_id` (`student_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -523,13 +662,19 @@ ALTER TABLE `assignments`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `course_engagement`
 --
 ALTER TABLE `course_engagement`
   MODIFY `engagement_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `course_videos`
+--
+ALTER TABLE `course_videos`
+  MODIFY `video_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `discussions`
@@ -589,7 +734,25 @@ ALTER TABLE `submissions`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `video_comments`
+--
+ALTER TABLE `video_comments`
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `video_transcodes`
+--
+ALTER TABLE `video_transcodes`
+  MODIFY `transcode_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `video_views`
+--
+ALTER TABLE `video_views`
+  MODIFY `view_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Constraints for dumped tables
@@ -627,6 +790,13 @@ ALTER TABLE `courses`
 ALTER TABLE `course_engagement`
   ADD CONSTRAINT `course_engagement_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `courses` (`course_id`) ON DELETE CASCADE,
   ADD CONSTRAINT `course_engagement_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `course_videos`
+--
+ALTER TABLE `course_videos`
+  ADD CONSTRAINT `course_videos_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `courses` (`course_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `course_videos_ibfk_2` FOREIGN KEY (`module_id`) REFERENCES `modules` (`module_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `discussions`
@@ -686,6 +856,27 @@ ALTER TABLE `quiz_questions`
 ALTER TABLE `submissions`
   ADD CONSTRAINT `submissions_ibfk_1` FOREIGN KEY (`assignment_id`) REFERENCES `assignments` (`assignment_id`) ON DELETE CASCADE,
   ADD CONSTRAINT `submissions_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `video_comments`
+--
+ALTER TABLE `video_comments`
+  ADD CONSTRAINT `video_comments_ibfk_1` FOREIGN KEY (`video_id`) REFERENCES `course_videos` (`video_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `video_comments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `video_comments_ibfk_3` FOREIGN KEY (`parent_id`) REFERENCES `video_comments` (`comment_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `video_transcodes`
+--
+ALTER TABLE `video_transcodes`
+  ADD CONSTRAINT `video_transcodes_ibfk_1` FOREIGN KEY (`video_id`) REFERENCES `course_videos` (`video_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `video_views`
+--
+ALTER TABLE `video_views`
+  ADD CONSTRAINT `video_views_ibfk_1` FOREIGN KEY (`video_id`) REFERENCES `course_videos` (`video_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `video_views_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
