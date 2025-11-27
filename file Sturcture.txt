@@ -1,0 +1,103 @@
+Microsoft Windows [Version 10.0.19045.6466]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Abdullah Ali HR\Desktop\node\lms\backend>tree /F /A
+Folder PATH listing
+Volume serial number is 3479-C442
+C:.
+|   .env
+|   index.js
+|   package-lock.json
+|   package.json
+|
++---config
+|       db.js
+|
++---controllers
+|       announcementController.js
+|       announcementReadController.js
+|       assignmentController.js
+|       courseController.js
+|       courseVideoController.js
+|       discussionAttachmentController.js
+|       discussionController.js
+|       enrollmentController.js
+|       moduleController.js
+|       quizAttemptController.js
+|       quizController.js
+|       quizOptionController.js
+|       quizQuestionController.js
+|       submissionController.js
+|       userController.js
+|       videoCommentController.js
+|       videoTranscodeController.js
+|       videoViewController.js
+|
++---middlewares
+|       upload.js
+|       uploadTranscode.js
+|       validateAnnouncement.js
+|       validateAnnouncementRead.js
+|       validateAssignment.js
+|       validateCourse.js
+|       validateCreateVideo.js
+|       validateEnrollment.js
+|       validateModule.js
+|       validateQuiz.js
+|       validateQuizAttempt.js
+|       validateQuizOption.js
+|       validateQuizQuestion.js
+|       validateSubmission.js
+|       validateUpdateAssignment.js
+|       validateUpdateCourse.js
+|       validateUpdateModule.js
+|       validateUpdateUser.js
+|       validateUpdateVideo.js
+|       validateUser.js
+|       validateVideoComment.js
+|       validateVideoTranscode.js
+|       validateVideoView.js
+|
++---models
+|       announcement.js
+|       announcementRead.js
+|       assignment.js
+|       course.js
+|       courseVideo.js
+|       discussion.js
+|       discussionAttachment.js
+|       enrollment.js
+|       module.js
+|       quiz.js
+|       quizAttempt.js
+|       quiz_option.js
+|       quiz_question.js
+|       submission.js
+|       user.js
+|       videoComment.js
+|       videoTranscode.js
+|       videoView.js
+|
+
+\---routes
+        announcementReadsRoutes.js
+        announcementsRoutes.js
+        assignmentRoutes.js
+        courseRoutes.js
+        courseVideoRoutes.js
+        discussionAttachments.js
+        discussionRoutes.js
+        enrollmentRoutes.js
+        moduleRoutes.js
+        quizAttemptRoutes.js
+        quizOptions.js
+        quizQuestions.js
+        quizRoutes.js
+        submissionRoutes.js
+        userRoutes.js
+        videoCommentsRoutes.js
+        videoTranscodesRoutes.js
+        videoViewsRoutes.js
+
+
+C:\Users\Abdullah Ali HR\Desktop\node\lms\backend>
